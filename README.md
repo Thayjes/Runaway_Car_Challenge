@@ -12,7 +12,7 @@ This repository contains all the code needed to complete the Bonus Challenge: Ca
 In this project, a UKF is implemented and also used to catch an escaped car driving in a circular path. 
 The run away car will be being sensed by a stationary sensor, that is able to measure both noisy lidar and radar data. The capture vehicle will need to use these measurements to close in on the run away car. To capture the run away car the capture vehicle needs to come within .1 unit distance of its position. However the capture car and the run away car have the same max velocity, so if the capture vehicle wants to catch the car, it will need to predict where the car will be ahead of time.
 
-### STRATEGY
+### Strategy
 
 The strategy I used to capture the car utilized the fact that the car is executing uniform circular motion. Using the measurements (LIDAR and RADAR) I was able to create a fit for the circle and estimate the radius and position of the center.
 With this in mind the procedure is as follows:
@@ -23,7 +23,7 @@ With this in mind the procedure is as follows:
 
 3. Using this we can predict where the target car will be after this time and catch it.
 
-### RESULTS
+### Results
 
 1. [Standard noise settings in LASER and RADAR Measurements] (https://drive.google.com/open?id=1XMEe46nlFjkcFSGlKU2QuYIIRc1fsNME)
 
