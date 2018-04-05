@@ -1,4 +1,4 @@
-# Run Away Robot with Unscented Kalman Filter Bonus Challenge Starter Code
+# Run Away Robot with Unscented Kalman Filter Bonus Challenge Code
 Self-Driving Car Engineer Nanodegree Program
 
 ---
