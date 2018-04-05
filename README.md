@@ -9,8 +9,29 @@ This repository contains all the code needed to complete the Bonus Challenge: Ca
 
 ### Project Introduction
 
-In this project, not only do you implement an UKF, but also use it to catch an escaped car driving in a circular path. 
+In this project, a UKF is implemented and also used to catch an escaped car driving in a circular path. 
 The run away car will be being sensed by a stationary sensor, that is able to measure both noisy lidar and radar data. The capture vehicle will need to use these measurements to close in on the run away car. To capture the run away car the capture vehicle needs to come within .1 unit distance of its position. However the capture car and the run away car have the same max velocity, so if the capture vehicle wants to catch the car, it will need to predict where the car will be ahead of time.
+
+### STRATEGY
+
+The strategy I used to capture the car utilized the fact that the car is executing uniform circular motion. Using the measurements (LIDAR and RADAR) I was able to create a fit for the circle and estimate the radius and position of the center.
+With this in mind the procedure is as follows:
+
+1. If the hunter car is outside the circle, bring it back to the center.
+
+2. From the center, every point on the circle is the same distance away (i.e the radius of the circle). Also the max velocity of the hunter car is the same as the target car. So we know how long (i.e the time) the hunter car will take to go to any point on the circle.
+
+3. Using this we can predict where the target car will be after this time and catch it.
+
+### RESULTS
+
+1. [Standard noise settings in LASER and RADAR Measurements] (https://drive.google.com/open?id=1XMEe46nlFjkcFSGlKU2QuYIIRc1fsNME)
+
+2. [With added noise in LASER Measurements alone] (https://drive.google.com/open?id=1JpEEOr1fB1iPscHdKc9ESPeyfIvCkeHv)
+
+3. [Added noise in LASER and RADAR Measurements] (https://drive.google.com/open?id=1Az6JrFRb03D_4xBW9jTEiZqAEqoVELg1)
+
+We can see that it does very well with standard noise, and as the noise in the measurements increase there is increased difficulty in catching the target car but eventually it does.
 
 ### Running the Code
 
@@ -25,8 +46,6 @@ Once the install for uWebSocketIO is complete, the main program can be built and
 `cmake .. && make` 
 
 `./UnscentedKF`
-
-Note that the programs that need to be written to accomplish the project are `src/ukf.cpp`, `ukf.h`, and `main.cpp` which will use some strategy to catch the car, just going to the cars current esimtated position will not be enough since the capture vehicle is not fast enough. There are a number of different strategies you can use to try to catch the car, but all will likely involve predicting where the car will be in the future which the UKF can do. Also remember that the run away car is simplifying moving a circular path without any noise in its movements.
 
 
 Here is the main protocol that `main.cpp` uses for uWebSocketIO in communicating with the simulator.
@@ -76,12 +95,5 @@ Here is the main protocol that `main.cpp` uses for uWebSocketIO in communicating
 3. Compile: `cmake .. && make`
 4. Run it: `./UnscentedKF` 
 
-### RESULTS
 
-1. [Standard noise settings in LASER and RADAR Measurements] (https://drive.google.com/open?id=1XMEe46nlFjkcFSGlKU2QuYIIRc1fsNME)
 
-2. [With added noise in LASER Measurements alone] (https://drive.google.com/open?id=1JpEEOr1fB1iPscHdKc9ESPeyfIvCkeHv)
-
-3. [Added noise in LASER and RADAR Measurements] (https://drive.google.com/open?id=1Az6JrFRb03D_4xBW9jTEiZqAEqoVELg1)
-
-We can see that it does very well with standard noise, and as the noise in the measurements increase there is increased difficulty in catching the target car but eventually it does.
