@@ -10,7 +10,17 @@ This repository contains all the code needed to complete the Bonus Challenge: Ca
 ### Project Introduction
 
 In this project, a UKF is implemented and also used to catch an escaped car driving in a circular path. 
-The run away car will be being sensed by a stationary sensor, that is able to measure both noisy lidar and radar data. The capture vehicle will need to use these measurements to close in on the run away car. To capture the run away car the capture vehicle needs to come within .1 unit distance of its position. However the capture car and the run away car have the same max velocity, so if the capture vehicle wants to catch the car, it will need to predict where the car will be ahead of time.
+The run away car is sensed by a stationary sensor, that is able to measure both noisy lidar and radar data. The capture vehicle will need to use these measurements to close in on the runaway car. To capture the runaway car the capture vehicle needs to come within .1 unit distance of its position. However the capture car and the runaway car have the same max velocity, so if the capture vehicle wants to catch the runaway car, it will need to predict where the car will be ahead of time.
+
+### Results
+
+1. [Standard noise settings in LASER and RADAR Measurements] (https://drive.google.com/open?id=1XMEe46nlFjkcFSGlKU2QuYIIRc1fsNME)
+
+2. [With added noise in LASER Measurements alone] (https://drive.google.com/open?id=1JpEEOr1fB1iPscHdKc9ESPeyfIvCkeHv)
+
+3. [Added noise in LASER and RADAR Measurements] (https://drive.google.com/open?id=1Az6JrFRb03D_4xBW9jTEiZqAEqoVELg1)
+
+We can see that it does very well with standard noise, and as the noise in the measurements increase there is increased difficulty in catching the target car but eventually it does.
 
 ### Strategy
 
@@ -22,16 +32,6 @@ With this in mind the procedure is as follows:
 2. From the center, every point on the circle is the same distance away (i.e the radius of the circle). Also the max velocity of the hunter car is the same as the target car. So we know how long (i.e the time) the hunter car will take to go to any point on the circle.
 
 3. Using this we can predict where the target car will be after this time and catch it.
-
-### Results
-
-1. [Standard noise settings in LASER and RADAR Measurements] (https://drive.google.com/open?id=1XMEe46nlFjkcFSGlKU2QuYIIRc1fsNME)
-
-2. [With added noise in LASER Measurements alone] (https://drive.google.com/open?id=1JpEEOr1fB1iPscHdKc9ESPeyfIvCkeHv)
-
-3. [Added noise in LASER and RADAR Measurements] (https://drive.google.com/open?id=1Az6JrFRb03D_4xBW9jTEiZqAEqoVELg1)
-
-We can see that it does very well with standard noise, and as the noise in the measurements increase there is increased difficulty in catching the target car but eventually it does.
 
 ### Running the Code
 
